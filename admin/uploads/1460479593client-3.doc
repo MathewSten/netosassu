@@ -1,0 +1,11 @@
+<html><meta http-equiv="Content-Type" content="text/html; charset=Windows-1252"><body><h4>Client Details :-</h4><table class="table table-bordered table-hover" id="example2"><tr><th>Name</th><td>client 3</td></tr><tr><th>Email</th><td></td></tr><tr><th>Contact No.</th><td></td></tr><tr><th>City</th><td></td></tr><tr><th>State</th><td></td></tr><tr><th>Country</th><td></td></tr><tr><th>Descrtiption</th><td><ul>
+	<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+	<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+	<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+	<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+	<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+	<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+	<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+	<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+</ul>
+</td></tr></table></body></html>

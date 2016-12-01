@@ -1,0 +1,128 @@
+@charset "utf-8";
+.css {
+}
+@font-face {
+  font-family:'HelveticaNeue-Bold';
+  src: url('../font/HelveticaNeue-Bold.eot?#iefix') format('embedded-opentype'),  url('../font/HelveticaNeue-Bold.woff') format('woff'), url('../font/HelveticaNeue-Bold.ttf')  format('truetype'), url('../font/HelveticaNeue-Bold.svg#HelveticaNeue-Bold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+	margin: 0px;
+	padding: 0px;
+}
+body {
+	margin: 0; font-family:'HelveticaNeue-Bold';
+	
+}
+.thanku {
+    color: #355f77;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size:45px;
+width:100%;
+text-align:center;
+}
+.thank {
+background-color: #ffffff;
+    border: 5px solid #8561ab;
+    border-radius: 10px;
+    margin: 2% auto;
+    padding:15px;
+    cursor:pointer;
+    text-align:center;
+    width:280px;
+}
+.logo img.thanks{margin-top:13%;}
+#wrapper_thanks{background-color:#d2dee6;background-image: linear-gradient(to bottom, #9882bd, #d2dee6);background-repeat:repeat-x;height:100%;width:100%;max-width:1366px;margin:0 auto;}
+
+.landingpage_in{float:left;height:100%;width:100%;}
+#landingpage{width:100%;max-width:1366px;margin:0 auto;}
+#wrapper{background-image: url("../images/Landing-Page.png");background-repeat:no-repeat;
+background-size:100% 100%;height: 100%;
+position:relative;margin:0 auto;
+max-width:1366px;width:100%;}
+.logo{float:right;margin-top:25px;width:100%;text-align:center;}
+.logo ul { float:right;}
+.logo ul li { display:inline-block; padding:10px 16px;}
+.form{float:right;max-width:540px;width:100%;padding:20px;}
+.form h1{text-align: center;
+	font-family:'HelveticaNeue-Bold';
+	font-size:18px;
+	color:#f27669;
+	margin-bottom:10px;
+}
+.form > form{float:left;width:100%;}
+.form ul{float:left;margin:0;padding:0;width:100%;}
+.form > ul > li{
+	 display: block;
+    float: left;
+    font-family:'HelveticaNeue-Bold';
+    font-size: 16px;
+    list-style-type: none;
+    margin-bottom: 5px;
+    text-align: right;
+    width: 100%;}
+.form ul li label{color: #f27669;
+    display: inline-block;
+    float: left;
+    font-family:'HelveticaNeue-Bold';
+    font-size:16px;
+    letter-spacing: normal;
+    margin-right: 10px;
+    padding: 5px 10px;
+    text-align: right;
+    width: calc(50% - 20px);}
+.checkbox{float:left;margin:10px 0;text-align:center;width:100%;}
+.form > form > ul > li{
+   float: left;
+    list-style: outside none none;
+    width: 100%;
+}
+.form ul li input[type="text"]{background-color:#e7e6e6;width:calc(50% - 10px);float: left; color:#000;
+border-radius:4px; border:0; padding:5px}
+.form ul li input[type="submit"]{background:#f27669;border:medium none;cursor:pointer;border-radius: 3px;color: #fff;font-size:10px;font-weight: bold;    padding: 5px 3px;}
+
+.form ul li input.date{width:125px; margin-right:2px;}
+.form ul li input.time{width:164px;}
+.form ul li i{display: inline-block; vertical-align: text-top;}
+
+.form input[type="checkbox"]{ margin-left:90px; display: inline-block;}
+.form label{font-family:'HelveticaNeue-Bold';font-size:12px;color:#ffffff;margin-left:0px;letter-spacing:normal;}
+.social h1 {color:#f27669;font-family:'HelveticaNeue-Bold';font-size:14px;margin-top:10px;}	
+.social{float:left;text-align:center;width:100%;}
+.social ul{margin:0px;padding:0px;}
+.social ul li{list-style-type:none;display:inline-block;}
+.section {bottom:0;float:left;left:0;position:absolute;width:100%;}
+.companylogo { display:block; float:right; margin-top:65px;}
+.companylogo ul {display:block;
+	list-style-type:none;
+	float: right;}
+	.companylogo ul li {display:block;
+	list-style-type:none; padding-right:6px;
+	float: left;}
+	
+.ticket { display:block; float:left; margin-top:65px; margin-LEFT:16px;}	
+	
+.ticket .aa { font-size:11px; color:#FFF;}
+.ticket .bb { font-size:14px; color:#FFF;}	
+.ticket .cc { font-size:13px; color:#ad1514;}	
+.ticket .dd { font-size:13px; color:#b48b10;}	
+/*---gradient----*/
+.green-box{
+	width:360px; float:left;
+	background-color: #adc613;
+  	background-image: -moz-linear-gradient(top, #d6ee42, 		#adc613);
+  	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#d6ee42), to(#adc613));
+  	background-image: -webkit-linear-gradient(top, #d6ee42, #adc613);
+  	background-image: -o-linear-gradient(top, #d6ee42, #adc613);
+  	background-image: linear-gradient(to bottom, #d6ee42, #adc613);
+  	background-repeat: repeat-x;
+   	-webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+          border-radius:15px;
+}
+
+
+/*-----------------------------*/
+

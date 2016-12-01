@@ -1,0 +1,21 @@
+Client requirement:
+=================
+I  am looking for a software development solution. I currently keep multiple file notes on various pieces of date related information. I then collect those file notes and try to put the data into chronological order. Its time consuming. I'm looking for a standalone program where I can enter data as I read it into a chronology. I will need to be able to open the document and update it as I go.
+
+The program will allow me to enter data and record it in chronological date order. The data will include employment history, medical history, sporting history, education history, recreational history. I would like to enter the date, a description and source of data. The information will not be entered in date order but the program will need to sort it into chronological order.
+
+I would like to be able to push a button for additional information and also be able to upload or follow a link to the source documents. 
+
+If possible the program will be written using Microsoft Office.
+
+My understanding:
+==============
+We have had gone through the requirement and we can provide you the system so that you can mange the data very easily.
+
+I look forward to your response so that we can discuss this further and can strat the work ASAP
+
+Regards
+
+Also I have attached the chat which I done with the client.
+
+Time Frame as given to the Client is : 10 days
