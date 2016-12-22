@@ -9,7 +9,27 @@
 		$natoapi = trim($accountData['netoapi']);
 		$natosite = trim($accountData['netosite']);
 		$sassufileid = trim($accountData['saasufile']);
-		$sassukey = trim($accountData['saasukey']);
+		$sassukey = trim($accountData['saasukey']);		
+		
+		$sql = "SELECT * FROM `sassu_items` WHERE sassu_file = '".$sassufileid."'";
+   		$items = $conn->query($sql);
+		$sassu_items = array(); 
+		if($items->num_rows > 0){
+			while($item = $items->fetch_assoc()){
+				$sassu_items[$item['item_code']] = $item;
+			}
+		}
+		//echo '<pre>'; print_r($sassu_items); echo '</pre>';	
+		$sql = "SELECT * FROM `sassu_contacts` WHERE sassu_file = '".$sassufileid."'";
+   		$contacts = $conn->query($sql);
+		$sassu_contacts = array(); 
+		if($contacts->num_rows > 0){
+			while($contact = $contacts->fetch_assoc()){
+				$sassu_contacts[$contact['contact_email']] = $contact;
+			}
+		}
+		//echo '<pre>'; print_r($sassu_contacts); echo '</pre>';	
+	//"DateRequiredFrom": "'.date('Y-m-d').' 00:00:00",
 		$postData = '{
   "Filter": {
     "OrderStatus": [
@@ -81,7 +101,7 @@
 		$orderdata = curl_exec($ch);
 		curl_close($ch);
 		$orderDataArr = json_decode($orderdata);
-		//echo '<pre>'; print_r($orderDataArr); die;
+		//echo '<pre>'; print_r($orderDataArr); echo '</pre>';//die;
 		if($orderDataArr->Ack != 'Error'){
 		/*$request_headers = array();
 		$request_headers[] = 'Content-Type:application/json';
@@ -115,6 +135,8 @@
 		$sassudatalistData = json_decode($sassudatalist);
 		//echo '<pre>'; print_r($sassudatalistData); die;
 		$sassuInvoices = array();
+		$sassuContactsCont = array();
+		$sassuIitemsCont = array();
 		foreach($sassudatalistData->Invoices as $invoices){
 			$sassuInvoices[$invoices->TransactionId] = $invoices->PurchaseOrderNumber;
 		}
@@ -128,12 +150,20 @@
 					continue;
 				}
 			}
+			if(!isset($sassu_contacts[$order->Email]['contact_id'])){
+				$sassuContactsCont[] = $order->Email;
+				continue;
+			}
 				/*if($okinsert == 1){
 					continue;
 				}*/
 				$LineItems = array();
-				$itemsIds = array('4812836','4812774','4812892');
+				//$itemsIds = array('4843131','4843132','4843133');
 				foreach($order->OrderLine as $kyi => $lineItem){
+					if(!isset($sassu_items[$lineItem->SKU]['item_id'])){
+						$sassuIitemsCont[] = $lineItem->SKU;
+						continue;
+					}
 					$LineItems[] = array(
 									  "Id"=>$lineItem->OrderLineID,
 									  "Description"=>$lineItem->ProductName,
@@ -143,8 +173,11 @@
 									  "Quantity"=>$lineItem->Quantity,
 									  "UnitPrice"=>$lineItem->UnitPrice,
 									  "PercentageDiscount"=>$lineItem->PercentDiscount,
-									  "InventoryId"=>$itemsIds[$kyi],
+									  "InventoryId"=>$sassu_items[$lineItem->SKU]['item_id'],
 									  "ItemCode"=>$lineItem->SKU);
+				}
+				if(empty($LineItems)){
+					continue;
 				}
 				$sassuInsert = array(
 							"LineItems"=>$LineItems,
@@ -163,7 +196,7 @@
 						    "RequiresFollowUp"=>false,
 						    "SentToContact"=>false,							
 						    "TransactionDate"=>$order->DatePlaced,
-						    "BillingContactId"=>12932303,
+						    "BillingContactId"=>$sassu_contacts[$order->Email]['contact_id'],
 						    "CreatedDateUtc"=>$order->DatePlaced,
 						    "LastModifiedDateUtc"=>$order->DatePlaced,
 						    "PaymentStatus"=>"U",
@@ -171,7 +204,7 @@
 						    "InvoiceStatus"=>"O",
 						    "PurchaseOrderNumber"=>$order->OrderID,
 						    "PaymentCount"=>0);
-						
+			//echo '<pre>'; print_r($sassuInsert); echo '</pre>';			
 			$sassuDetails = json_encode($sassuInsert);  
 			$request_headers = array();
 			$request_headers[] = 'Content-Type:application/json';
@@ -183,10 +216,12 @@
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $request_headers);   
 			$sassudatadd = curl_exec($ch);
 			curl_close($ch); 
-			//echo '<pre>'; print_r(json_decode($sassudatadd)); die;
+			//echo '<pre>'; print_r(json_decode($sassudatadd)); echo '</pre>'; //die;
 			//$okinsert = 1;
 			}
 		}
+		//echo '<pre>'; print_r(array_unique($sassuIitemsCont)); echo '</pre>';
+		//echo '<pre>'; print_r(array_unique($sassuContactsCont)); echo '</pre>';
 		$msgBox = alertBox("Data successfully imported", "<i class='fa fa-ban'></i>", "success");
 		} else {
 		$errors = $orderDataArr->Messages;

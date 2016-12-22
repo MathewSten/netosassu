@@ -30,6 +30,19 @@
 					  <li><a href="<?php echo SITE_URL_ADMIN; ?>nato-saasu-add.php">Add Account</a></li>
 					</ul>
 				  </div>
+			</li>
+			<li>
+				<div class="dropdown">
+					<a class="btn dropdown-toggle" style="box-shadow:none;" data-toggle="dropdown">
+					<i class="fa fa-cog"></i><span style="padding:0px 14px;">Neto Sync</span>
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu" style="width:100%;">
+					  <li><a href="<?php echo SITE_URL_ADMIN; ?>nato-accounts.php">List Neto Accounts</a></li>
+					  <li><a href="<?php echo SITE_URL_ADMIN; ?>nato-account-add.php">Add Neto Account</a></li>
+					  <li><a href="<?php echo SITE_URL_ADMIN; ?>nato-export.php">Export Neto Items</a></li>
+					  <li><a href="<?php echo SITE_URL_ADMIN; ?>nato-import.php">Import Neto Items</a></li>
+					</ul>
+				  </div>
 			</li>		
 			<li>
 				<a href="<?php echo SITE_URL_ADMIN; ?>logout.php">

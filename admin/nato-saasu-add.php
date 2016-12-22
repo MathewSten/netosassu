@@ -32,6 +32,52 @@
 			$msgBox = alertBox("Account successfully added", "<i class='fa fa-ban'></i>", "success");
 			$_SESSION['msg'] = $msgBox;
 		}
+		if(isset($_SESSION['msg'])){
+			$sql = "DELETE FROM `sassu_items` WHERE `sassu_file` = '".$sassufileid."'";
+			$conn->query($sql);
+			$sql = "DELETE FROM `sassu_contacts` WHERE `sassu_file` = '".$sassufileid."'";
+			$conn->query($sql);
+			for($i=1;$i<=100;$i++){
+				$request_headers = array();
+				$request_headers[] = 'Content-Type:application/json';
+				$sassuauth = 'https://api.saasu.com/Items?FileId='.$sassufileid.'&wsAccessKey='.$sassukey.'&PageSize=100&Page='.$i;
+				$ch = curl_init($sassuauth);      
+				//curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");  
+				//curl_setopt($ch, CURLOPT_POSTFIELDS, $sassuDetails);               
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);            
+				curl_setopt($ch, CURLOPT_HTTPHEADER, $request_headers);   
+				$sassu_itemsJson = curl_exec($ch);
+				curl_close($ch);
+				$sassu_items = json_decode($sassu_itemsJson); 
+				if(empty($sassu_items->Items)){
+					break;
+				}
+				foreach($sassu_items->Items as $sassu_item){
+					$sql = "INSERT INTO `sassu_items` SET `sassu_file` = '".$sassufileid."', `item_name` = '".$sassu_item->Description."',`item_code` = '".$sassu_item->Code."', `item_sku` = '".$sassu_item->Code."', `item_id` = '".$sassu_item->Id."', `other` = '".$sassu_item->Type."'";
+					$conn->query($sql);
+				}
+			}
+			for($j=1;$j<=100;$j++){
+				$request_headers = array();
+				$request_headers[] = 'Content-Type:application/json';
+				$sassuauth = 'https://api.saasu.com/Contacts?FileId='.$sassufileid.'&wsAccessKey='.$sassukey.'&PageSize=100&Page='.$j;
+				$ch = curl_init($sassuauth);      
+				//curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");  
+				//curl_setopt($ch, CURLOPT_POSTFIELDS, $sassuDetails);               
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);            
+				curl_setopt($ch, CURLOPT_HTTPHEADER, $request_headers);   
+				$sassu_contactsJson = curl_exec($ch);
+				curl_close($ch); 
+				$sassu_contacts = json_decode($sassu_contactsJson); 
+				if(empty($sassu_contacts->Contacts)){
+					break;
+				}
+				foreach($sassu_contacts->Contacts as $sassu_contact){
+					$sql = "INSERT INTO `sassu_contacts` SET `sassu_file` = '".$sassufileid."', `contact_name` = '".$sassu_contact->GivenName."',`contact_id` = '".$sassu_contact->Id."', `contact_email` = '".$sassu_contact->EmailAddress."', `contact_phone` = '".$sassu_contact->PrimaryPhone."', `contactid` = '".$sassu_contact->ContactId."'";
+					$conn->query($sql);
+				}
+			}
+		}
 		echo '<script>window.location.href="'.SITE_URL_ADMIN.'nato-saasu.php"</script>';
 	}
 	$accountData = array();

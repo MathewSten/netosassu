@@ -1,15 +1,12 @@
 <?php 
-	include_once('../common/config.php');
-	
+	include_once('../common/config.php');	
 	include_once('function.php');
-
+	include_once('exportNeto.php');
 	/* Check Admin Login */
 	if(!isset($_SESSION['admin_email']) && $_SESSION['admin_id']=='')
 	{
-		header('Location: '.SITE_URL_ADMIN.'login.php');
-	}
-	
-	
+		//header('Location: '.SITE_URL_ADMIN.'login.php');
+	}	
 	if(isset($_SESSION['admin_name']) && $_SESSION['admin_name']!='' )
 	{
 		$username = $_SESSION['admin_name'];
